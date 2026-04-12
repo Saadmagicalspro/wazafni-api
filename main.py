@@ -4,6 +4,7 @@ Core APIs: CV Upload, Jobs, Matches, Events, Subscriptions
 """
 from fastapi import FastAPI, HTTPException, Depends, Header, BackgroundTasks, UploadFile, File
 from revenue import router as revenue_router
+from cv_analyzer import router as cv_analyzer_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, EmailStr
@@ -21,6 +22,8 @@ app = FastAPI(
 
 # Include Revenue Engine
 app.include_router(revenue_router)
+# Include CV Analyzer v4.0
+app.include_router(cv_analyzer_router)
 
 app.add_middleware(
     CORSMiddleware,
